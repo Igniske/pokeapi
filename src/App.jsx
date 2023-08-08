@@ -155,31 +155,47 @@ const borderClass = info.types.length > 1
           <div className={searchError ? "" : "hidden"}>Pokemon not found!</div>
         </div>
       </div>
-      {(info === null ? "" : <div className={`flex flex-col flex-wrap h-full w-1/4 m-auto border-4 ${borderClass}`}>
+      {(info === null ? "" : <div className={`flex flex-col flex-wrap h-full w-1/4 m-auto bg-red-600 border-4 ${borderClass}`}>
         <div className='flex flex-row py-4 text-xl m-auto'>
-          <div>{firstCharToUpperCase(info.name)} #{info.id}</div>
+          <div className='border-2 w-64 text-center border-black'>
+            <div className='border-4 border-gray-500'>
+              <div className='border-2 border-black bg-white'>
+                {firstCharToUpperCase(info.name)} #{info.id}
+              </div>
+            </div>
+          </div>
         </div>
         <div className='m-auto pb-4'>
-          <div className='text-center'>Type:</div> 
+          
           {(info.types.length > 1 ? <div className='flex flex-row'><div className={'h-8 w-20 py-1 text-white font-medium text-sm rounded-l-lg text-center bg-' + borderColor(info.types[0].type.name)}>{upperCaseType(info.types[0].type.name)}</div><div className={'h-8 w-20 py-1 text-white font-medium text-sm rounded-r-lg text-center bg-' + borderColor(info.types[1].type.name)}>{upperCaseType(info.types[1].type.name)}</div></div> : <div className='flex flex-row'><div className={'h-8 w-20 py-1 text-white font-medium text-sm rounded-lg text-center bg-' + borderColor(info.types[0].type.name)}>{upperCaseType(info.types[0].type.name)}</div></div>)}
         </div>
-        <div className='flex flex-row space-x-8 m-auto'>
-          <button className='bg-stone-200 h-12 w-12 rounded-full border-2 border-black' onClick={handleShiny}><img src={Shiny} /></button>
-          <button className='bg-stone-600 h-12 w-12 rounded-full border-2 border-black' onClick={handleBack}><img src={ChangeSide} /></button>
-          <button className='bg-stone-400 h-12 w-12 rounded-full border-2 border-black' onClick={handleRandomPokemon}><img src={Randomize} /></button>
+        <div className='py-4 m-auto'>
+          <div className='flex flex-row space-x-8 m-auto'>
+            <button className='bg-stone-200 h-12 w-12 rounded-full border-2 border-black' onClick={handleShiny}><img src={Shiny} /></button>
+            <button className='bg-stone-600 h-12 w-12 rounded-full border-2 border-black' onClick={handleBack}><img src={ChangeSide} /></button>
+            <button className='bg-stone-400 h-12 w-12 rounded-full border-2 border-black' onClick={handleRandomPokemon}><img src={Randomize} /></button>
+          </div>
         </div>
-        <img className='h-64 w-64' src={fromBack ? (isShiny ? info.sprites.back_shiny : info.sprites.back_default) : (isShiny ? info.sprites.front_shiny : info.sprites.front_default)} />
-        <ul className='h-fit w-fit border-2 border-stone-300'>
-          <li>Hp: {info.stats[0].base_stat}</li>
-          <li>Attack: {info.stats[1].base_stat}</li>
-          <li>Defense: {info.stats[2].base_stat}</li>
-          <li>Special Atk: {info.stats[3].base_stat}</li>
-          <li>Special Def: {info.stats[4].base_stat}</li>
-          <li>Speed: {info.stats[5].base_stat}</li>
-        </ul>
+        <div className='m-auto border-2 rounded-sm border-black'>
+          <div className='border-8 border-gray-400'>
+            <div className='border-2 border-black bg-white'>
+              <img className='h-64 w-64' src={fromBack ? (isShiny ? info.sprites.back_shiny : info.sprites.back_default) : (isShiny ? info.sprites.front_shiny : info.sprites.front_default)} />
+            </div>
+          </div>
+        </div>
+        <div className='my-4'>
+          <ul className='h-fit w-1/2 border-2 m-auto text-center border-stone-300'>
+            <li>Hp: {info.stats[0].base_stat}</li>
+            <li>Attack: {info.stats[1].base_stat}</li>
+            <li>Defense: {info.stats[2].base_stat}</li>
+            <li>Special Atk: {info.stats[3].base_stat}</li>
+            <li>Special Def: {info.stats[4].base_stat}</li>
+            <li>Speed: {info.stats[5].base_stat}</li>
+          </ul>
+        </div>
         <div className='flex flex-row'>
           <div>Abilities:</div>
-          <button className='bg-orange-500 h-16 w-16' onClick={handleAbilityHidden}/>
+          <button className='bg-orange-500 h-2 w-2' onClick={handleAbilityHidden}/>
         </div>
         
         {abilitiesArray()}
