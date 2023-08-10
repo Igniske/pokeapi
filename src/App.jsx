@@ -6,6 +6,7 @@ import Shiny from './assets/icons/shinyico.png'
 import ChangeSide from "./assets/icons/changeico.jpeg"
 import Randomize from "./assets/icons/randomico.png"
 import ColorTest from './components/ColorTest';
+
 function App() {
 
   const [randomPokemon, setRandomPokemom] = useState(Math.round(Math.random() * 1000))
@@ -39,7 +40,7 @@ function App() {
   }, [pokemon, searchError]);
 
 function abilitiesArray(){
-  let skills = info.abilities.map((skill,index) => <div className='flex flex-col border-2 border-black' key={index}><div className='flex flex-row'><h2>{skill.ability.name}</h2></div><p className={abilitiesHidden ? "hidden" : ""}>{abilitiesDesc[index]}</p></div>)
+  let skills = info.abilities.map((skill,index) => <div className={'flex flex-col border-2 border-black ' + (abilitiesHidden ? "border-y-0" : "border-t-0")} key={index}><div className='flex flex-row'><h2 className='border-b-2 border-b-black w-full text-center'>{replaceSymbol(firstCharToUpperCase(skill.ability.name))}</h2></div><div className='bg-white'><p className={abilitiesHidden ? "hidden" : ""}>{abilitiesDesc[index]}</p></div></div>)
   return skills
 }
 
@@ -132,6 +133,17 @@ const firstCharToUpperCase = (str) =>{
   return name.join("")
 }
 
+const replaceSymbol = (str) =>{
+  let name = str.split("")
+  return name.map((char) =>{
+    if(char === "-"){
+      char = " "
+    }
+    return char;
+  }).join("")
+}
+
+
 if(info === null){
   return (
     <div>
@@ -139,6 +151,8 @@ if(info === null){
     </div>
   )
 }
+
+
 
 const borderClass = info.types.length > 1
   ? `border-y-${borderColor(info.types[0].type.name)} border-x-${borderColor(info.types[1].type.name)}`
@@ -155,10 +169,12 @@ const borderClass = info.types.length > 1
           <div className={searchError ? "" : "hidden"}>Pokemon not found!</div>
         </div>
       </div>
-      {(info === null ? "" : <div className={`flex flex-col flex-wrap h-full w-1/4 m-auto bg-red-600 border-4 ${borderClass}`}>
+      {(info === null ? "" : <div className={`h-full w-1/4 m-auto bg-red-600 border-2 border-black`}>
+        <div className={`flex flex-col flex-wrap border-4 ${borderClass}`}>
+      
         <div className='flex flex-row py-4 text-xl m-auto'>
           <div className='border-2 w-64 text-center border-black'>
-            <div className='border-4 border-gray-500'>
+            <div className='border-4 border-stone-400'>
               <div className='border-2 border-black bg-white'>
                 {firstCharToUpperCase(info.name)} #{info.id}
               </div>
@@ -171,37 +187,46 @@ const borderClass = info.types.length > 1
         </div>
         <div className='py-4 m-auto'>
           <div className='flex flex-row space-x-8 m-auto'>
-            <button className='bg-stone-200 h-12 w-12 rounded-full border-2 border-black' onClick={handleShiny}><img src={Shiny} /></button>
-            <button className='bg-stone-600 h-12 w-12 rounded-full border-2 border-black' onClick={handleBack}><img src={ChangeSide} /></button>
-            <button className='bg-stone-400 h-12 w-12 rounded-full border-2 border-black' onClick={handleRandomPokemon}><img src={Randomize} /></button>
+            <button className={'h-12 w-12 rounded-full border-2 border-black ' + (isShiny ? "bg-blue-600" : "bg-white")} onClick={handleShiny}><img src={Shiny} /></button>
+            <button className={'h-12 w-12 rounded-full border-2 border-black ' + (fromBack ? "bg-blue-600" : "bg-white")} onClick={handleBack}><img src={ChangeSide} /></button>
+            <button className='bg-white h-12 w-12 rounded-full border-2 border-black' onClick={handleRandomPokemon}><img src={Randomize} /></button>
           </div>
         </div>
         <div className='m-auto border-2 rounded-sm border-black'>
-          <div className='border-8 border-gray-400'>
-            <div className='border-2 border-black bg-white'>
+          <div className='border-8 border-stone-400'>
+            <div className={`border-2 border-black background-${info.types[0].type.name}`}>
               <img className='h-64 w-64' src={fromBack ? (isShiny ? info.sprites.back_shiny : info.sprites.back_default) : (isShiny ? info.sprites.front_shiny : info.sprites.front_default)} />
             </div>
           </div>
         </div>
-        <div className='my-4'>
-          <ul className='h-fit w-1/2 border-2 m-auto text-center border-stone-300'>
-            <li>Hp: {info.stats[0].base_stat}</li>
-            <li>Attack: {info.stats[1].base_stat}</li>
-            <li>Defense: {info.stats[2].base_stat}</li>
-            <li>Special Atk: {info.stats[3].base_stat}</li>
-            <li>Special Def: {info.stats[4].base_stat}</li>
-            <li>Speed: {info.stats[5].base_stat}</li>
+        <div className='my-4 h-48 '>
+          
+          <ul className='h-fit w-1/2 m-auto bg-stone-900 text-justified'>
+            <div className='border-2 border-black'>
+            <div className='border-4 border-stone-400'>
+              <li className='w-full flex flex-row border-2 border-b-black  border-black'><div className='w-3/5 text-white'>Hp:</div> <div className='w-2/5 bg-white border-l-2 border-l-black text-center'>{info.stats[0].base_stat}</div></li>
+              <li className='w-full flex flex-row border-b-2 border-b-black border-x-2 border-black'><div className='w-3/5 text-white'>Attack:</div> <div className='w-2/5 bg-white border-l-2 border-l-black text-center'>{info.stats[1].base_stat}</div></li>
+              <li className='w-full flex flex-row border-b-2 border-b-black border-x-2 border-black'><div className='w-3/5 text-white'>Defense:</div> <div className='w-2/5 bg-white border-l-2 border-l-black text-center'>{info.stats[2].base_stat}</div></li>
+              <li className='w-full flex flex-row border-b-2 border-b-black border-x-2 border-black'><div className='w-3/5 text-white'>Sp Atk:</div> <div className='w-2/5 bg-white border-l-2 border-l-black text-center'>{info.stats[3].base_stat}</div></li>
+              <li className='w-full flex flex-row border-b-2 border-b-black border-x-2 border-black'><div className='w-3/5 text-white'>Sp Def:</div> <div className='w-2/5 bg-white border-l-2 border-l-black text-center'>{info.stats[4].base_stat}</div></li>
+              <li className='w-full flex flex-row border-b-2 border-b-black border-x-2 border-black'><div className='w-3/5 text-white'>Speed:</div> <div className='w-2/5 bg-white border-l-2 border-l-black text-center'>{info.stats[5].base_stat}</div></li>
+              <li className='w-full flex flex-row border-b-2 border-b-black border-x-2 border-black'><div className='w-3/5 text-white'>Total:</div> <div className='w-2/5 bg-white border-l-2 border-l-black text-center'>{info.stats[0].base_stat + info.stats[1].base_stat + info.stats[2].base_stat + info.stats[3].base_stat + info.stats[4].base_stat + info.stats[5].base_stat}</div></li>
+            </div>
+            </div>
           </ul>
+          
         </div>
-        <div className='flex flex-row'>
-          <div>Abilities:</div>
-          <button className='bg-orange-500 h-2 w-2' onClick={handleAbilityHidden}/>
+        <div className='flex flex-row w-full border-2 border-black'>
+          <button className='h-full w-full bg-stone-400' onClick={handleAbilityHidden}>Abilities:</button>
         </div>
         
         {abilitiesArray()}
-      </div>)}
-      <GenerationX number={1} firstNum={1} secondNum={151} handleShow={handleShow}/>
-      <GenerationX number={2} firstNum={152} secondNum={251} handleShow={handleShow}/>
+        </div>
+      </div>
+      
+      )}
+      <GenerationX name={"Kanto"} number={1} firstNum={1} secondNum={151} handleShow={handleShow}/>
+      <GenerationX name={"Johto"} number={2} firstNum={152} secondNum={251} handleShow={handleShow}/>
     </>
   )
 }

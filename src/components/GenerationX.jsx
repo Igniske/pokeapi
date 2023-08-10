@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-function GenerationX({number, firstNum, secondNum, handleShow}){
+function GenerationX({name, number, firstNum, secondNum, handleShow}){
 
     const [thisGenerationPokes, setThisGenerationPokes] = useState([])
     const [hideThisGen, setHideThisGen] = useState(false);
@@ -55,8 +55,8 @@ function GenerationX({number, firstNum, secondNum, handleShow}){
         <>
         <div>
             <div className="flex flex-row w-full h-16 border-2 border-black text-center">
-                <div>Generation {number};</div>
-                <button className="bg-red-200 h-8 w-8" onClick={handleHide}/>
+                
+                <button className=" h-16 w-full" onClick={handleHide}><div>{name} (Generation {number}):</div></button>
             </div>
             <div className={"flex flex-row flex-wrap" + (hideThisGen ? " hidden" : "")}>
                 {pokemonRenders()}

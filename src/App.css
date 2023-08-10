@@ -1,0 +1,54 @@
+.background-normal{
+    background-image: url("./assets/backgrounds/normalbg.jpg");
+}
+.background-water{
+    background-image: url("./assets/backgrounds/waterbg.jpg");
+}
+.background-fire{
+    background-image: url("./assets/backgrounds/firebg.jpg");
+}
+.background-grass{
+    background-image: url("./assets/backgrounds/grassbg.jpg");
+}
+.background-ice{
+    background-image: url("./assets/backgrounds/icebg.jpg");
+}
+.background-ground{
+    background-image: url("./assets/backgrounds/groundbg.jpg");
+}
+.background-rock{
+    background-image: url("./assets/backgrounds/rockbg.jpg");
+}
+.background-fighting{
+    background-image: url("./assets/backgrounds/fightingbg.jpg");
+}
+.background-dragon{
+    background-image: url("./assets/backgrounds/dragonbg.jpg");
+}
+.background-fairy{
+    background-image: url("./assets/backgrounds/fairybg.jpg");
+}
+.background-poison{
+    background-image: url("./assets/backgrounds/poisonbg.jpg");
+}
+.background-bug{
+    background-image: url("./assets/backgrounds/bugbg.jpg");
+}
+.background-psychic{
+    background-image: url("./assets/backgrounds/psychicbg.jpg");
+}
+.background-steel{
+    background-image: url("./assets/backgrounds/steelbg.jpg");
+}
+.background-electric{
+    background-image: url("./assets/backgrounds/electricbg.jpg");
+}
+.background-dark{
+    background-image: url("./assets/backgrounds/darkbg.jpg");
+}
+.background-ghost{
+    background-image: url("./assets/backgrounds/ghostbg.jpg");
+}
+.background-flying{
+    background-image: url("./assets/backgrounds/flyingbg.png");
+}
