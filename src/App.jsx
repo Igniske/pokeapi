@@ -163,6 +163,7 @@ const borderClass = info.types.length > 1
       <Navbar></Navbar>
       <ColorTest></ColorTest>
       <div className='flex flex-row m-auto'>
+        
         <div className='m-auto py-16'>
           <input className='border-4 border-black h-8 w-36' value={inputValue} onChange={handleInputChange}/>
           <button onClick={handleSubmit} className='bg-gray-500 h-8 w-24'>Search!</button>
@@ -171,8 +172,41 @@ const borderClass = info.types.length > 1
       </div>
       {(info === null ? "" : <div className={`h-full w-1/4 m-auto bg-red-600 border-2 border-black`}>
         <div className={`flex flex-col flex-wrap border-4 ${borderClass}`}>
-      
-        <div className='flex flex-row py-4 text-xl m-auto'>
+        <div className='flex flex-row h-24'>
+          <div className='border-2 rounded-full mt-4 ml-4 h-14 w-14 border-black'>
+            <div className='border-4 rounded-full h-full border-gray-300' >
+              <div className='border-2 rounded-full h-full border-black'>
+                <div className='rounded-full h-full bg-blue-500'>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='border-2 rounded-full mt-4 ml-4 h-8 w-8 border-black'>
+            <div className='border-2 rounded-full h-full border-gray-300' >
+              <div className='border-2 rounded-full h-full border-black'>
+                <div className='rounded-full h-full bg-green-500'>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='border-2 rounded-full mt-4 ml-4 h-8 w-8 border-black'>
+            <div className='border-2 rounded-full h-full border-gray-300' >
+              <div className='border-2 rounded-full h-full border-black'>
+                <div className='rounded-full h-full bg-red-800'>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='border-2 rounded-full mt-4 ml-4 h-8 w-8 border-black'>
+            <div className='border-2 rounded-full h-full border-gray-300' >
+              <div className='border-2 rounded-full h-full border-black'>
+                <div className='rounded-full h-full bg-yellow-500'>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='flex flex-row pb-4 text-xl m-auto'>
           <div className='border-2 w-64 text-center border-black'>
             <div className='border-4 border-stone-400'>
               <div className='border-2 border-black bg-white'>
@@ -225,8 +259,8 @@ const borderClass = info.types.length > 1
       </div>
       
       )}
-      <GenerationX name={"Kanto"} number={1} firstNum={1} secondNum={151} handleShow={handleShow}/>
-      <GenerationX name={"Johto"} number={2} firstNum={152} secondNum={251} handleShow={handleShow}/>
+      <GenerationX borderColor={borderColor} allUpper={upperCaseType} toUpper={firstCharToUpperCase} Shiny={Shiny} name={"Kanto"} number={1} firstNum={1} secondNum={151} handleShow={handleShow}/>
+      <GenerationX borderColor={borderColor} allUpper={upperCaseType} toUpper={firstCharToUpperCase} Shiny={Shiny} name={"Johto"} number={2} firstNum={152} secondNum={251} handleShow={handleShow}/>
     </>
   )
 }

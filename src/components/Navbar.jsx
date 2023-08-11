@@ -25,27 +25,7 @@ function Navbar(){
                     <div className="text-sm my-auto font-bold"></div>
                 </div>
             </div>
-            {(showLinks && (
-                <div className={`"lg:hidden flex flex-col bg-sky-600 text-2xl font-semibold w-full h-screen text-white"`}>
-                    <ul className="flex flex-col space-y-6 text-2xl mt-8 ml-6"> 
-                        <li>About</li>
-                        <li>Join us</li>
-                        <li>Shop</li>
-                        <li>Help</li>
-                        <li>Packs</li>
-                        <li>Try it for free</li>
-                        <li className="text-md font-thin">Log in or Register</li>
-                    </ul>
-                    <ul className="flex flex-col space-y-6 text-2xl mt-8 ml-6">
-                        <li>More on Yangyin.com</li>
-                        <li>Blog</li>
-                        <li>YangYin for the classroom</li>
-                        <li>YangYin for Collegues and Universities</li>
-                        <li>Certified trainings</li>
-                        <li>Jobs</li>
-                    </ul>
-                </div>
-            ))}
+            
      </div>
     );
 };
