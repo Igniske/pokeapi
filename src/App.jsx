@@ -112,13 +112,20 @@ const handleBack = (event) =>{
   setFromBack(!fromBack)
 }
 
+const handleKeyPress = (event) => {
+  if (event.key === 'Enter') {
+    handleSubmit(event);
+  }
+};
+
+
 const handleSubmit = (event) =>{
   if(inputValue === "")
   {
     return ""
   }
   event.preventDefault()
-  setPokemon(inputValue)
+  setPokemon(inputValue.toLocaleLowerCase())
 }
 
 const handleRandomPokemon = (event) =>{
@@ -152,8 +159,6 @@ if(info === null){
   )
 }
 
-
-
 const borderClass = info.types.length > 1
   ? `border-y-${borderColor(info.types[0].type.name)} border-x-${borderColor(info.types[1].type.name)}`
   : `border-${borderColor(info.types[0].type.name)}`;
@@ -162,15 +167,23 @@ const borderClass = info.types.length > 1
     <>
       <Navbar></Navbar>
       <ColorTest></ColorTest>
-      <div className='flex flex-row m-auto'>
-        
-        <div className='m-auto py-16'>
-          <input className='border-4 border-black h-8 w-36' value={inputValue} onChange={handleInputChange}/>
-          <button onClick={handleSubmit} className='bg-gray-500 h-8 w-24'>Search!</button>
-          <div className={searchError ? "" : "hidden"}>Pokemon not found!</div>
+      <div className='flex flex-row flex-wrap m-auto'>
+        <div className='w-full text-center py-8 text-xl'>
+          Welcome to my PokeAPI! I hope that you find useful this tool i've made!
         </div>
+        
+          <div className='flex flex-col m-auto w-full py-10 items-center justify-center'>
+            <div className='text-center py-8'>Here you can search for your desired Pokemon, and look some info about it.</div>
+            <div className='flex'>
+              <input className='border-2 border-black h-8 w-36' value={inputValue} onKeyPress={handleKeyPress} onChange={handleInputChange}/>
+              <button onClick={handleSubmit} className='bg-gray-400 h-8 w-24 border-2 border-black border-l-0'>Search!</button>
+            </div>
+            <div className={searchError ? "" : "hidden"}>Pokemon not found!</div>
+            
+          </div>
+        
       </div>
-      {(info === null ? "" : <div className={`h-full w-1/4 m-auto bg-red-600 border-2 border-black`}>
+      {(info === null ? "" : <div className={`h-full lg:w-1/3 w-5/6 m-auto bg-red-600 border-2 lg:mb-12 mb-6 border-black`}>
         <div className={`flex flex-col flex-wrap border-4 ${borderClass}`}>
         <div className='flex flex-row h-24'>
           <div className='border-2 rounded-full mt-4 ml-4 h-14 w-14 border-black'>
@@ -261,6 +274,13 @@ const borderClass = info.types.length > 1
       )}
       <GenerationX borderColor={borderColor} allUpper={upperCaseType} toUpper={firstCharToUpperCase} Shiny={Shiny} name={"Kanto"} number={1} firstNum={1} secondNum={151} handleShow={handleShow}/>
       <GenerationX borderColor={borderColor} allUpper={upperCaseType} toUpper={firstCharToUpperCase} Shiny={Shiny} name={"Johto"} number={2} firstNum={152} secondNum={251} handleShow={handleShow}/>
+      <GenerationX borderColor={borderColor} allUpper={upperCaseType} toUpper={firstCharToUpperCase} Shiny={Shiny} name={"Hoenn"} number={3} firstNum={252} secondNum={386} handleShow={handleShow}/>
+      <GenerationX borderColor={borderColor} allUpper={upperCaseType} toUpper={firstCharToUpperCase} Shiny={Shiny} name={"Sinnoh"} number={4} firstNum={387} secondNum={493} handleShow={handleShow}/>
+      <GenerationX borderColor={borderColor} allUpper={upperCaseType} toUpper={firstCharToUpperCase} Shiny={Shiny} name={"Tesselia"} number={5} firstNum={494} secondNum={649} handleShow={handleShow}/>
+      <GenerationX borderColor={borderColor} allUpper={upperCaseType} toUpper={firstCharToUpperCase} Shiny={Shiny} name={"Kalos"} number={6} firstNum={650} secondNum={721} handleShow={handleShow}/>
+      <GenerationX borderColor={borderColor} allUpper={upperCaseType} toUpper={firstCharToUpperCase} Shiny={Shiny} name={"Alola"} number={7} firstNum={722} secondNum={809} handleShow={handleShow}/>
+      <GenerationX borderColor={borderColor} allUpper={upperCaseType} toUpper={firstCharToUpperCase} Shiny={Shiny} name={"Galar"} number={8} firstNum={810} secondNum={898} handleShow={handleShow}/>
+      <GenerationX borderColor={borderColor} allUpper={upperCaseType} toUpper={firstCharToUpperCase} Shiny={Shiny} name={"Paldea"} number={9} firstNum={899} secondNum={1004} handleShow={handleShow}/>
     </>
   )
 }

@@ -24,8 +24,8 @@ function GenerationX({name, number, firstNum, secondNum, handleShow, Shiny, toUp
     
     const pokemonRenders = () =>{
         return thisGenerationPokes.map((poke, index) =>(
-             <div key={index} className={`w-1/4 h-1/2 border-2 border-black background-${poke.types[0].type.name}`}>
-                <div className='border-2 w-64 mx-auto my-4 text-center border-black'>
+             <div key={index} className={`lg:w-1/3 w-1/2 h-1/2 pb-4 border-2 border-black background-${poke.types[0].type.name}`}>
+                <div className='border-2 w-5/6 mx-auto my-2 text-center border-black'>
                     <div className='border-4 border-stone-400'>
                         <div className='border-2 border-black bg-white'>
                             {toUpper(poke.name)} #{poke.id}
@@ -34,7 +34,7 @@ function GenerationX({name, number, firstNum, secondNum, handleShow, Shiny, toUp
                 </div>
                 <div className="flex m-auto">
                     <div className="flex flex-row m-auto space-x-5">
-                        <button className="h-1/6 w-fit px-4 rounded-full border-2 border-black bg-red-500" onClick={() => handleShow(poke.id)}><div>Display</div></button>
+                        <button className="h-1/6 w-fit px-4 rounded-full border-2 border-white bg-black" onClick={() => handleShow(poke.id)}><div className="text-white">Display</div></button>
                         <button className={"h-8 w-8 bg-white rounded-full border-2 border-black"} onClick={()=> {
                             const updatedPokes = [...thisGenerationPokes];
                             updatedPokes[index].shiny = !updatedPokes[index].shiny; 
@@ -42,13 +42,13 @@ function GenerationX({name, number, firstNum, secondNum, handleShow, Shiny, toUp
                             }}><img className="h-6" src={Shiny}/></button>
                     </div>
                 </div>
-                <div className='flex m-auto w-full py-8'>
-                        {(poke.types.length > 1 ? <div className='flex flex-row m-auto'><div className={'h-8 w-20 py-1 text-white font-medium text-sm rounded-l-lg text-center bg-' + borderColor(poke.types[0].type.name)}>{toUpper(poke.types[0].type.name)}</div><div className={'h-8 w-20 py-1 text-white font-medium text-sm rounded-r-lg text-center bg-' + borderColor(poke.types[1].type.name)}>{toUpper(poke.types[1].type.name)}</div></div> : <div className='flex flex-row m-auto'><div className={'h-8 w-20 py-1 text-white font-medium text-sm rounded-lg text-center bg-' + borderColor(poke.types[0].type.name)}>{toUpper(poke.types[0].type.name)}</div></div>)}
+                <div className='flex m-auto w-full py-4'>
+                        {(poke.types.length > 1 ? <div className='flex flex-row border-2 border-black rounded-lg m-auto'><div className={'h-8 w-20 py-1 text-white font-medium text-sm rounded-l-lg text-center bg-' + borderColor(poke.types[0].type.name)}>{toUpper(poke.types[0].type.name)}</div><div className={'h-8 w-20 py-1 text-white font-medium text-sm rounded-r-lg text-center bg-' + borderColor(poke.types[1].type.name)}>{toUpper(poke.types[1].type.name)}</div></div> : <div className='flex flex-row border-2 rounded-lg border-black m-auto'><div className={'h-8 w-20 py-1 text-white font-medium text-sm rounded-lg text-center bg-' + borderColor(poke.types[0].type.name)}>{toUpper(poke.types[0].type.name)}</div></div>)}
                 </div>
-                <div className="flex m-auto w-1/2 h-4/5">
-                    <img src={(poke.shiny ? poke.sprites.front_shiny : poke.sprites.front_default)} className="h-full w-16 m-auto" />
+                <div className="flex m-auto w-1/2 lg:h-4/5 h-24 lg:my-0 my-2">
+                    <img src={(poke.shiny ? poke.sprites.front_shiny : poke.sprites.front_default)} className="h-full lg:w-fit w-full m-auto" />
                 </div>
-                    <ul className='h-fit w-1/2 m-auto bg-stone-900 text-justified'>
+                    <ul className='h-fit lg:w-1/2 w-2/3 mx-auto bg-stone-900 text-justified'>
                         <div className='border-2 border-black'>
                             <div className='border-4 border-stone-400'>
                                 <li className='w-full flex flex-row border-2 border-b-black  border-black'><div className='w-3/5 text-white'>Hp:</div> <div className='w-2/5 bg-white border-l-2 border-l-black text-center'>{poke.stats[0].base_stat}</div></li>
@@ -73,7 +73,7 @@ function GenerationX({name, number, firstNum, secondNum, handleShow, Shiny, toUp
     return(
         <>
         <div>
-            <div className="flex flex-row w-full h-16 border-2 border-black text-center">
+            <div className="flex flex-row w-full h-16 border-2 bg-red-600 text-white font-serif text-xl border-black text-center">
                 
                 <button className=" h-16 w-full" onClick={handleHide}><div>{name} (Generation {number}):</div></button>
             </div>
